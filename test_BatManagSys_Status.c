@@ -1,12 +1,12 @@
-#include "test_BatManageSys_Staus.h"
+#include "test_BatManagSys_Status.h"
 
 int test_batteryIsOk(float expectedTemp, float expectedsoc, float expectedChargeRate)
 {	
-	batteryIsOk(expectedsoc,expectedTemp,expectedChargeRate,expectedTempUnit);
+	batteryIsOk(expectedsoc,expectedTemp,expectedChargeRate);
 }
 int test_batteryIsNotOk(float expectedTemp, float expectedsoc, float expectedChargeRate)
 {	
-	batteryIsNotOk(expectedsoc,expectedTemp,expectedChargeRate,expectedTempUnit);
+	batteryIsNotOk(expectedsoc,expectedTemp,expectedChargeRate);
 }
 
 void testBatteryStatus_params(void)

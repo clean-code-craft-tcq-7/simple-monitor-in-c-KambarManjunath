@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "Bms.h"
-#include "test_BatManageSys_Staus.h"
+#include "test_BatManagSys_Status.h"
 
 int main()
 {
