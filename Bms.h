@@ -6,8 +6,8 @@
 
 #define MIN_LOWSOCBREACH         0
 #define MIN_LOWSOCWARNING        20
-#define MIN_SOCNORMAL		 24
-#define MIN_HIGHSOCWARNING 	 75
+#define MIN_SOCNORMAL		     24
+#define MIN_HIGHSOCWARNING 	     76
 #define MIN_HIGHSOCBREACH        80
 #define MAX_HIGHOCBREACH         100
 
@@ -29,22 +29,24 @@
 #define E_OK                       0
 #define E_NOT_OK                   1
 
+#define TEMP_UNIT_FARENHEIT       'F'
+#define TEMP_UNIT_CELCIUS         'C'
 
 
 extern int BattSocLowLimit(float soc);
 extern int BattSocHighLimit(float soc);
 extern int tBatterySocIsOk(float soc );
 extern int BattTempLowLimit(float temp);
-extern int intBattTempHighLimit(float temp , char tempUnit);
-extern int inttBatteryTempIsOk(float temp , char tempUnit );
-extern int intBattChargeRateLowLimit(float chargeRate);
-extern int intBattChargeRateHighLimit(float chargeRate);
-extern int inttBatteryChargeRateIsOk(float chargeRate );
-extern bool inttBattTempUnit(char cel);
-extern float inttBattConvertTemp(float temp, char tempUnit);
+extern int BattTempHighLimit(float temp , char tempUnit);
+extern int tBatteryTempIsOk(float temp , char tempUnit );
+extern int BattChargeRateLowLimit(float chargeRate);
+extern int BattChargeRateHighLimit(float chargeRate);
+extern int tBatteryChargeRateIsOk(float chargeRate );
+extern bool tBattTempUnit(char cel);
+extern float tBattConvertTemp(float temp, char tempUnit);
 
-extern int batteryIsOk(float temp, float soc, float chargeRate);
-extern int batteryIsNotOk(float temp, float soc, float chargeRate);
+extern int batteryIsOk(float temp, float soc, float chargeRate, char tempUnit);
+extern int batteryIsNotOk(float temp, float soc, float chargeRate, char tempUnit);
 
 
 #endif

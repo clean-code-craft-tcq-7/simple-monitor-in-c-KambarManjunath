@@ -56,20 +56,20 @@ int BattTempLowLimit(float temp)
 	}
 }
 
-int BattTempHighLimit(float temp)
+int BattTempHighLimit(float temp, char tempUnit)
 {
 	if ((temp >= MIN_HIGHTEMPWARNING) || (temp <= MIN_HIGHTEMPBREACH))
 	{
 		return E_NOT_OK; 
 	}
 	else 
-	{
+	{   tBattConvertTemp(temp, tempUnit);
 		return E_NOT_OK; 
 	}
 	
 }
 
-int tBatteryTempIsOk(float temp )
+int tBatteryTempIsOk(float temp, char tempUnit )
 {
 	int tempStatus = E_OK;
 	if((temp >= MIN_LOWTEMPBREACH) && (temp < MIN_HIGHTEMPWARNING))
@@ -78,11 +78,31 @@ int tBatteryTempIsOk(float temp )
 	}
 	else
 	{
-		tempStatus = BattTempHighLimit(temp);
+		tempStatus = BattTempHighLimit(temp, tempUnit);
 	}
 	return tempStatus;
 }
 
+bool tBattTempUnit(char cel)
+ {
+ 	if(cel == TEMP_UNIT_CELCIUS)
+		return true;
+	 else
+		return false;
+ }
+
+float tBattConvertTemp(float temp, char tempUnit)
+{
+	float celcius;
+	if((temp > MAX_HIGHTEMPBREACH) && (tempUnit == TEMP_UNIT_FARENHEIT))
+	{
+		celcius = (temp - 32) * 5 / 9;
+	}
+	else
+	{
+		return temp;
+	}
+}
 
 /****************ChargeRate*****************************************/
 int BattChargeRateLowLimit(float chargeRate)
@@ -124,17 +144,17 @@ int tBatteryChargeRateIsOk(float chargeRate )
 	return chargeRateStatus;
 }
 
-int batteryIsOk(float temp, float soc, float chargeRate )
+int batteryIsOk(float temp, float soc, float chargeRate, char tempUnit)
 {	
 	float stateOfCharge = tBatterySocIsOk(soc);
-	float temperature = tBatteryTempIsOk(temp);
+	float temperature = tBatteryTempIsOk(temp, tempUnit);
 	float chargerate = tBatteryChargeRateIsOk(chargeRate);
 	return (temperature && stateOfCharge && chargerate);
 }
-int batteryIsNotOk(float temp, float soc, float chargeRate)
+int batteryIsNotOk(float temp, float soc, float chargeRate, char tempUnit)
 {	
 	float stateOfCharge = tBatterySocIsOk(soc);
-	float temperature = tBatteryTempIsOk(temp);
+	float temperature = tBatteryTempIsOk(temp, tempUnit);
 	float chargerate = tBatteryChargeRateIsOk(chargeRate);
 	return (temperature || stateOfCharge || chargerate);
 }
