@@ -26,8 +26,8 @@
 #define MAX_HIGHCHARGERATEBREACH  1.0
 
 
-#define E_OK                       0
-#define E_NOT_OK                   1
+#define STATUS_OK                       0
+#define STATUS_NOT_OK                   1
 
 #define TEMP_UNIT_FARENHEIT       'F'
 #define TEMP_UNIT_CELCIUS         'C'
