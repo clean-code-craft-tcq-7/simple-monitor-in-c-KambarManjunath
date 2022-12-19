@@ -60,11 +60,11 @@ int BattTempHighLimit(float temp, char tempUnit)
 {
 	if ((temp >= MIN_HIGHTEMPWARNING) || (temp <= MIN_HIGHTEMPBREACH))
 	{
-		return E_NOT_OK; 
+		return STATUS_NOT_OK; 
 	}
 	else 
 	{   tBattConvertTemp(temp, tempUnit);
-		return E_NOT_OK; 
+		return STATUS_NOT_OK; 
 	}
 	
 }
